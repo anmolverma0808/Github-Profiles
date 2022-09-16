@@ -8,12 +8,22 @@ getUser("anmolverma0808");
 
 async function getUser(user) {
 
-    const resp = await fetch(APIURL + user)
-    const respData = await resp.json();
+    if(resp.status == 404)
+    {
+        const card = `<div class = "card">
+                        <p class = "info" > Invalid Username! </p>
+                      </div>    
+        `
+        main.innerHTML = card;
+    }
+    else
+    {
+        const respData = await resp.json();
+        console.log(resp);
+        createUserCard(respData);
 
-    createUserCard(respData);
-
-    getRepos(user);
+        getRepos(user);
+    }
 }
 
 async function getRepos(username) {
