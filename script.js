@@ -19,7 +19,6 @@ async function getUser(user) {
     else
     {
         const respData = await resp.json();
-        console.log(resp);
         createUserCard(respData);
 
         getRepos(user);
